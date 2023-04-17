@@ -1,0 +1,114 @@
+﻿@model List<CrudTrabajadores.Models.Trabajadore>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Lista de trabajadores</h5>
+    </div>
+    <div class="card-body">
+        <a class="btn btn-success btn-sm" asp-action="Trabajadore_detalle" asp-controller="Home" asp-route-id="0" >Crear nuevo</a>
+        
+
+        <hr />
+
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Tipo Documento</th>
+                    <th>Nro Documento</th>
+                    <th>Nombres</th>
+                    <th>Sexo</th>
+                    <th>Departamento</th>
+                    <th>Provincia</th>
+                    <th>Distrito</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @{
+                    int evenCounter = 0;
+                    int oddCounter = 0;
+                }
+
+                @foreach (var item in Model)
+                {
+                    @*var rowClass = "";
+                    if (item.oSexo.Sexo1 == "M")
+                    {
+                        if (evenCounter % 2 == 0)
+                        {
+                            rowClass = "blue-row";
+                        }
+                        else
+                        {
+                            rowClass = "even-row blue-row";
+                        }
+                        evenCounter++;
+                    }
+                    else if (item.oSexo.Sexo1 == "F")
+                    {
+                        if (oddCounter % 2 == 0)
+                        {
+                            rowClass = "orange-row";
+                        }
+                        else
+                        {
+                            rowClass = "even-row orange-row";
+                        }
+                        oddCounter++;
+
+                    }*@
+
+                    //-----------------
+
+                    var rowClass = (item.oSexo.Sexo1 == "M") ? "blue-row" : "orange-row";
+                    @*var rowClass = "";
+                    if (item.oSexo.Sexo1 == "M" && evenCounter % 2 == 0)
+                    {
+                        rowClass = "blue-row";
+                        evenCounter++;
+                    }
+                    else if (item.oSexo.Sexo1 == "F" && oddCounter % 2 == 0)
+                    {
+                        rowClass = "orange-row";
+                        oddCounter++;
+                    }*@
+                    <tr class="@rowClass">
+                   
+                        <td>@item.oTipodocumento.Tipodocumento1</td>
+                        <td>@item.NumeroDocumento</td>
+                        <td>@item.Nombres</td>
+                        <td>@item.oSexo.Sexo1</td>
+                        <td>@item.oDepartamento.NombreDepartamento</td>
+                        <td>@item.oProvincia.NombreProvincia</td>
+                        <td>@item.oDistrito.NombreDistrito</td>
+
+
+
+                        <td>
+                            <a class="btn btn-primary btn-sm" asp-action="Trabajadore_detalle" asp-controller="Home" asp-route-id="@item.Id">Editar</a>
+                            <a class="btn btn-danger btn-sm" asp-action="Eliminar" asp-controller="Home" asp-route-id="@item.Id">Eliminar</a>
+                        </td>
+                    </tr>
+                    
+
+                }
+            </tbody>
+        </table>
+
+
+
+    </div>
+</div>
+
+
+}

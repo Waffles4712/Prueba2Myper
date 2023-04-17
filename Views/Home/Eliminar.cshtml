@@ -1,0 +1,62 @@
+﻿@model CrudTrabajadores.Models.Trabajadore
+@{
+    ViewData["Title"] = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="text-danger">=¿Eliminar al trabajador?</h3>
+
+<hr />
+<div class="row">
+    <div class="col-sm-7">
+        <form asp-action="Eliminar" asp-controller="Home" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="mb-2">
+                <label class="form-label" asp-for="IdTipo">Tipo Documento</label>
+                <input class="form-control form-control-sm" asp-for="IdTipo" type="text" disabled />
+            </div>
+
+            <div class="mb-2">
+                <label class="form-label" asp-for="NumeroDocumento">Numero Documento</label>
+                <input class="form-control form-control-sm" asp-for="NumeroDocumento" type="text" disabled />
+            </div>
+
+            <div class="mb-2">
+                <label class="form-label" asp-for="Nombres">Nombre completo</label>
+                <input class="form-control form-control-sm" asp-for="Nombres" type="text" disabled />
+            </div>
+
+
+
+
+            <div class="mb-2">
+
+                <button class="btn btn-danger btn-sm w-25" type="submit" id="btnEliminar" >Eliminar</button>
+
+                <a class="btn btn-dark btn-sm" asp-action="Index" asp-controller="Home">Volver</a>
+
+            </div>
+
+            @section scripts {
+                <script>
+                    $(document).ready(function () {
+                        $('#btnEliminar').click(function (e) {
+                            e.preventDefault();
+                            if (confirm('¿Está seguro de eliminar el registro?')) {
+                                $('form').submit();
+                            }
+                        });
+                    });
+                </script>
+            }
+
+
+
+
+
+
+        </form>
+    </div>
+</div>
+
